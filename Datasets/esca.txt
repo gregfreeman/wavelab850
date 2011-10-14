@@ -1,0 +1,12 @@
+esca.asc -- ESCA signal
+
+Access
+    Esca = ReadSignal('ESCA');
+  
+Size
+    1024 by 1
+
+Source
+    This ESCA spectrum was provided by J.P. Bib\'erian, of the
+    Universit\'e de Marseille -- Luminy.
+

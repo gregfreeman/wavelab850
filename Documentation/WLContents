@@ -1,0 +1,1381 @@
+                                           
+%           ******   Biorthogonal/   ********         
+% Biorthogonal:Contents v850 -- Bi-Orthogonal Wavelet Transform tools
+%
+% The routines in this directory perform periodic- biorthogonal wavelet
+% analysis of 1-d and 2-d signals.
+% 
+% The main idea of the algorithms, and the reason for naming the directory
+% Symmetric, is that the underlying filtering operations, rather than
+% being one-sided as in the directory Wavelab/Orthogonal, are two-sided
+% and extend an equal distance into the past and future. Filters are not
+% actually required to be symmetric, but they must be of length 2k+1, the
+% middle sample being taken as the filter coefficient attached to zero lag.
+% 
+% The main tools for all-purpose use are FWT_PBS and IWT_PBS.
+%
+%          Wavelet Transforms
+%
+% FWT_PBS           -  Forward Wavelet Transform, Periodized,
+%                           Bi-Orthogonal, Symmetric
+% FWT_PB            -  new name of FWT_PBS
+%
+% IWT_PBS           -  Inverse Wavelet Transform, Periodized,
+%                           Bi-Orthogonal, Symmetric
+% IWT_PB            -  new name of IWT_PBS
+%
+% FWT_SBS           -  Forward Wavelet Transform, Symmetric Extended,
+%                           Bi-Orthogonal, Symmetric
+% IWT_SBS           -  Inverse Wavelet Transform, Symmetric Extended
+%                           Bi-Orthogonal, Symmetric
+%
+% FWT2_PBS          -  Forward Wavelet Transform, 2-d, Periodized,
+%                           Bi-Orthogonal, Symmetric
+% FWT2_PB           -  new name of FWT2_PBS
+%
+% IWT2_PBS          -  Inverse Wavelet Transform, 2-d, Periodized,
+%                           Bi-Orthogonal, Symmetric
+% IWT2_PB           -  new name of IWT2_PBS
+%
+% FWT2_SBS          -  Forward Wavelet Transform, 2-d, Symmetric Extended,
+%                           Bi-Orthogonal, Symmetric
+% IWT2_SBS          -  Inverse Wavelet Transform, 2-d, Symmetric Extended,
+%                           Bi-Orthogonal, Symmetric
+%
+%          Wavelet Transform Displays
+%
+% PlotPBSMultiRes   -  Display Mallat-style Multiresolution Decomposition
+%
+%          Filter and Wavelet Generators
+%
+% MakeBSFilter      -  Generate Symmetric Filters for FWT_PBS and FWT_SBS
+% MakeWavelet       -  Make periodized orthogonal wavelet
+%
+%          Two-Scale Operators
+% 
+% UpDyadHi_PBS      -  Upsampling Hi Pass operator   (used in IWT_PBS)
+% UpDyadLo_PBS      -  Upsampling Lo Pass operator   (used in IWT_PBS)
+% DownDyadHi_PBS    -  Downsampling Hi Pass operator (used in FWT_PBS)
+% DownDyadLo_PBS    -  Downsampling Lo Pass operator (used in FWT_PBS)
+% UpDyad_SBS        -  Upsampling operator   (used in IWT_SBS)
+% DownDyad_SBS      -  Downsampling operator (used in FWT_SBS)
+%
+%          Utilities
+%
+% symm_aconv        -  Periodic convolution of x with reverse of symmetric f
+% symm_iconv        -  Periodic convolution of x with symmetric f
+% MirrorSymmFilt    -  Conjugate Symmetric Filter
+% extend            -  Perform various finds of symmetric extension
+% dyadpartition     -  determine dyadic partition in wavelet transform of 
+%                      nondyadic signals
+%
+    
+    
+                                           
+%           ******   Books/   ********         
+% Books:Contents v$VERSION$ -- Books using Wavelab
+%
+% This directory contains code to reproduce books using WaveLab
+%
+% WaveTour - Figures of the book "A Wavelet Tour of Signal Processing"
+%                                Stephane Mallat, Academic Press, 1998 
+% 
+% This book explains the applications of wavelets to signal processing.
+                                           
+%           ******   Books/WaveTour/   ********         
+% WaveTour - Figures of the book "A Wavelet Tour of Signal Processing"
+% 
+% 	A Wavelet Tour of Signal Processing
+% 		Stephane Mallat
+% 	 ISBN: 0-12-466605-1
+% 	   Academic Press, 1998 
+% 
+% This book explains the applications of wavelets to signal processing.
+% A preview of the book can be found in:
+% 
+%    http://www.cmap.polytechnique.fr/users/www.mallat
+%       and
+%    http://cs.nyu.edu/cs/faculty/mallat
+% 
+% The subdirectories WTCh... contain files that reproduce the figures in 
+% each chapter, as explained in the Appendix B of the book.
+%
+                                           
+%           ******   Browsers/   ********         
+% Browsers:Contents v850 -- WaveLab Browsers
+%
+% This directory contains browsers for use with WaveLab
+%
+% One-D		-	One-D signal browser
+% WaveTour      -       Browser for Mallat's Book
+%
+                                           
+%           ******   Browsers/WaveTour/   ********         
+% WaveTour - Figures of the book "A Wavelet Tour of Signal Processing"
+% 
+% 	A Wavelet Tour of Signal Processing
+% 		Stephane Mallat
+% 	 ISBN: 0-12-466605-1
+% 	   Academic Press, 1998 
+% 
+% This book explains the applications of wavelets to signal processing.
+% A preview of the book can be found in:
+% 
+%    http://www.cmap.polytechnique.fr/users/www.mallat
+%       and
+%    http://cs.nyu.edu/cs/faculty/mallat
+% 
+% The subdirectories WTCh... contain files that reproduce the figures in 
+% each chapter, as explained in the Appendix B of the book.
+%
+    
+                                           
+%           ******   Browsers/One-D/   ********         
+% Browsers/One-D:Contents v850 -- 1-d Signal Browser
+%
+% The routines in this directory implement a point-and-click browser that
+% allows the user to select signals, select wavelet, wavelet packet,
+% discrete cosine transforms, etc.  Some of the options, including
+% WTCompress, WPCompress and CPCompress contain other possibilities for
+% interaction, such as interactive wavelet thresholding -- changing a
+% threshold interactively and watching the effects upon reconstruction.
+%
+% Invoke this browser via the command
+% 
+%    WLBrowser
+%  
+% Upon initialization, four new figure windows will tile the screen and
+% several menu items will appear at the top of the figure window at the
+% upper left of the screen:
+%
+%    File Edit Window *Data *Signal *Transform *Options *Action
+%
+% The starred items are the ones supplied by the browser.  If you click
+% the mouse button while pointing at the *Data item, a pull-down menu
+% will appear with the names of datasets, etc.  In this way, by point and
+% click operations, you can select wavelet types, transform types, and
+% immediately see the results of such operations.
+%
+% 
+    
+                                           
+%           ******   Continuous/   ********         
+% Continuous:Contents  v802 -- Continuous Wavelet Transform tools
+%
+% The routines in this directory perform periodic Continuous Wavelet
+% Transforms of 1-d signals, and tasks associated with CWT -- ridge and
+% skeleton extraction. The underlying computations are completely
+% different than in the usual orthogonal wavelet transforms -- they are
+% all based on convolution with gaussian-type windows, using frequency
+% domain implementations. Reconstruction is of little interest. Instead,
+% the aim is to calculate local scaling exponents at various points in
+% the signal, and to calculate generalized fractal dimensions.
+%
+% Attention; if signal length n=4096 and you use 12 voices per octave, you
+% will need maybe 32 MB of RAM to successfully run this sequence of tools
+% without an OUT-OF-MEMORY problem
+%
+%           Wavelet Transforms
+%
+% RWT                   Real Wavelet Transform
+% iRWT                  Inverse Real Wavelet Transform
+% MM_RWT                Modulus Maxima of a Real Wavelet Transform
+% ImageRWT              Image of Continuous Wavelet Transform
+%
+% AWT                   Analytical Wavelet Transform
+% Ridge_AWT             Ridges of an Analytic Wavelet Transform
+%
+% CWT                   Continuous Wavelet Transform
+% ImageCWT              Image Display of CWT
+%
+%           Maxima
+%
+% WTMM                  Identify maxima of wavelet transform
+% ImageWTMM             Display maxima of wavelet transform.
+%
+%           Skeleton
+%
+% BuildSkelMap          Build Map of Skeleton of Wavelet Transform 
+% BuildSkelMapFast      Build Map of Skeleton of Wavelet Transform -- Faster
+% PlotSkelMap           Display Skeleton Map
+% PruneSkelMap          Prune weak ridges from Skeleton Map 
+%
+%           Ridges
+%
+% ExtractRidge          Extract Single Ridge from Skeleton Map
+% PlotRidges            log-log plot of amplitudes along several ridges
+%
+%           Thermodynamic Formalism
+%
+% CalcThermoPartition   Calculate Z(q,a) of Thermodynamic formalism
+% PlotThermoPartition   Display   Z(q,a) of Thermodynamic formalism
+%
+% CalcGenFracDimen      Calculate D(q) of Thermodynamic formalism
+% PlotGenFracDimen      Display   D(q) of Thermodynamic formalism
+%
+% CalcMomentGenFun      Calculate tau(q) of Theormodynamic formalism
+% PlotMomentGenFun      Display   tau(q) of Theormodynamic formalism
+%
+% CalcFracSpectrum      Calculate f(alpha) of Multifractal formalism
+% PlotFracSpectrum      Calculate f(alpha) of Multifractal formalism
+%
+%                       Auxiliary
+%
+% CalcCWTScale          Tool for calculating scales used in CWT
+% CalcCWTPars           Tool for calculating parameters used in CWT
+% CalcCWTNorms          Tool for calculating norms scale-by-scale in CWT
+%
+    
+                                           
+%           ******   Datasets/   ********         
+% Datasets:Contents v850 -- Datasets, Documentation, and Readers
+%
+%          Data Readers
+%
+%   BrowseImages        -   Browser for Image Datasets
+%   ImageFig            -   Called by BrowseImages
+%   ReadImage           -   Uniform Interface to Image Datasets
+%   ReadSignal          -   Uniform Interface to Signal Datasets
+%
+%
+%          Data Fabricators
+%
+%   MakeBrownian        -   Make Fractional Brownian Motions
+%   MakeCantor          -   Recursively generates a Cantor distribution.
+%   MakeFractal         -   Make fractal signals
+%   MakeImage           -   Make artificial 2d signal (enhanced of Make2dSignal)
+%   MakeProcess         -   Make locally stationary process
+%   MakeSignal          -   Make artificial signal
+%   Make2dSignal        -   Make artificial 2d signal
+%   makediag            -   Make diagonal pattern (used by Make2dSignal)
+%
+%
+%          1-d Signals
+%
+%   caruso.asc          -   old recording by Enrico Caruso
+%   esca.asc            -   ESCA spectrum supplied by J.P. Bib\'erian
+%   greasy.asc          -   recording of the word ``greasy'' from
+%                             Mallat and Zhang
+%   HochNMR.asc         -   NMR Spectrum supplied by Jeff Hoch
+%   lady.asc            -   See in Books/WaveTour/WTCh06/wt06fig07.m,
+%                             wt06fig08.m, wt07fig03.m, wt07fig07.m
+%   laser.asc           -   Time Series competition Laser series
+%   msignal.asc         -   Artificial signal in the article of Mallat & Zhong
+%   RaphNMR.asc         -   NMR Spectrum supplied by Adrian Maudsley
+%   seismic.asc         -   standard PROMAX test seismic signal
+%   SonRemy.asc         -   Vocalises
+%   sunspots.asc        -   sunspot numbers
+%   transients.asc      -   artificial signal of Mallat and Zhang
+%   tweet.asc           -   recording of a bird singing
+%
+%
+%          2-d Images 
+%
+%   barb.raw            -   ???
+%   barton.raw          -   painting of seashore compressed by
+%                             Jan-Olov Stromberg
+%   canaletto.raw       -   painting of Venice processed by
+%                             P. Perona and J. Malik
+%   coifman.raw         -   photo of R.R. Coifman
+%   daubechies.raw      -   photo of Ingrid Daubechies
+%   fingerprint.raw     -   someone's fingerprint
+%   lenna.raw           -   Lenna
+%   lincoln.raw         -   Honest Abe
+%   mriscan.raw         -   someone's brain
+%   peppers256.raw      -   See in Books/WaveTour/WTCh10/wt10fig05.m
+%   phone.raw           -   someone's phone
+%   
+%
+%          Utilities
+%   makediag            -   Make a diagonal pattern
+%   mat2raw             -   MAT2RAW(filename,x) writes matrix 'x' into file 'filename' in
+%                           'raw' form.
+%   raw2mat             -   mat = RAW2MAT(filename,lines,columns) loads a '.raw' file into
+%                           matrix 'mat' of size 'lines' * 'columns'.
+%
+    
+                                           
+%           ******   DeNoising/   ********         
+% DeNoising:Contents v850 -- Tools for DeNoising Signals with White Gaussian Noise
+%
+%  The tools in this directory implement the de-noising procedures
+%  described in the articles of Donoho and Johnstone and collaborators.
+%
+%         Noise Suppression Tools
+%
+% WaveShrink     -  Soft Threshold Shrinkage of Wavelet Coefficients
+% WPDeNoise      -  De-Noising in Best WP basis
+% CPDeNoise      -  De-Noising in Best CP basis
+%
+% ThreshCP       -  Cosine packet decomposition of a noisy signal,
+%                   Best Basis analysis, Thresholding in Best Basis
+% ThreshWP       -  Wavepacket decomposition of a noisy signal,
+%                   Best Basis analysis, Thresholding in Best Basis
+% ThreshWave     -  Denoising of 1-d signal with wavelet thresholding.
+% ThreshWave2    -  Denoising of 2-d image with wavelet thresholding.
+%
+% CohWave        -  Denoising of signal contaminated with another signal using coherent
+%                   structures algorithm.
+%
+% IdealWavDenoise - Simulation of an Ideal Thresholding Applied to
+%                   Wavelet Coefficients.
+% TIDenoiseHard2  - Translation-Invariant Hard Wavelet Thresholding of Images.
+% TIDenoiseSoft2  - Translation-Invariant Soft Wavelet Thresholding of Images.
+%
+%         Applying Thresholding to Many Scales 
+%
+% MultiHybrid    -  Apply Shrinkage with level-dependent thresholding via SURE
+% MultiMAD       -  Apply Shrinkage with level-dependent Noise level estimation
+% MultiSURE      -  Apply Shrinkage with level-dependent thresholding via SURE
+% MultiVisu      -  Apply sqrt(2log(n)) Thresholding to Wavelet Coefficients
+% InvShrink      -  Apply Shrinkage with Exponentially Growing Threshold
+%
+%         Setting Thresholds at a Single Scale
+%
+% HybridThresh   -  Modified SURE Threshold Selection
+% MinMaxThresh   -  Minimax-selected Threshold
+% SUREThresh     -  SURE Threshold Selection
+% ValSUREThresh  -  Value of SURE-selected Threshold 
+% VisuThresh     -  Visually Best Threshold Selection
+%
+%         Threshold Devices
+%
+% SoftThresh     -  Apply Soft Threshold
+% HardThresh     -  Apply Hard Threshold 
+%
+%         Pre-Conditioner
+%
+% NormNoise      -  Normalize signal to noise level 1
+%
+%         Utilities
+%
+% GWN            -  Generation of Gaussian White Noise
+% GWN2           -  Generation of 2-D Gaussian White NNoise
+% GWNoisy        -  Addition of a Gaussian White Noise
+% GWNoisy2       -  Addition of a 2D Gaussian White Noise
+% HT             -  Hard Threshold Applied to Wavelet Coefficients.
+% HT2            -  Hard Threshold Applied to Image Wavelet Coefficients.
+% ST             -  Soft Threshold Applied to Wavelet Coefficients.
+% ST2            -  Soft Threshold Applied to Wavelet Coefficients.
+% Wiener         -  Wiener filter.
+% Wiener         -  Wiener filter for images.
+%
+    
+                                           
+%           ******   Documentation/   ********         
+% Documentation:Contents v850 -- Directory of Documentation Tools
+%
+%   The files in this directory provide documentation about the function-
+%   ality, philosophy and construction of the WaveLab software library.
+%
+% ADDINGNEWFEATURES       -  How to Add New Features to WaveLab
+% BUGREPORT               -  How to report bugs about WaveLab
+% COPYING                 -  WaveLab Copying Permissions
+% DATASTRUCTURES          -  Basic data structures in WaveLab
+% FEEDBACK                -  Give feedback about WaveLab
+% GETTINGSTARTED          -  Ideas for getting started with WaveLab
+% INSTALLATION            -  Installation of WaveLab
+% LIMITATIONS             -  WaveLab known limitations
+% PAYMENT                 -  No Charge for WaveLab Software
+% READING                 -  Sources for further reading about wavelets
+% REGISTRATION            -  WaveLab Registration
+% SUPPORT                 -  WaveLab Support
+% THANKS                  -  Thanks to contributors
+% VERSION                 -  Part of WaveLab Version v802
+% WARRANTY                -  No Warranty on WaveLab software
+%
+% WLAlphaHelpListing      -  all help files arranged by function name
+% WLAlphaSynopsisListing  -  one-line synopses arranged by function name
+% WLContentsListing       -  all Contents.m files
+% WLFiles                 -  listing of all WaveLab files arranged by directory
+% WLHelpHeaders           -  listing of all first lines of help headers
+% WLHelpListing           -  all help files arranged by directory
+%
+    
+    
+                                           
+%           ******   FastAlgorithms/   ********         
+% FastAlgorithms:Contents v850 -- Tools for Fast Matrix Multiplication in Wavelet Basis
+%
+% FNWT_PO                -  Nonstandard Wavelet Transform,
+%                             Periodized, Orthogonal
+% FSFT_PO               -   Convert Matrix to Standard Form,
+%                             Periodized, Orthogonal
+% INWT_PO               -   Invert Nonstandard Wavelet Transform,
+%                             Periodized, Orthogonal
+% ISFT_PO               -   Convert Standard Form to Matrix Form,
+%                             Periodized, Orthogonal
+% Mat2SparseNSForm      -   Put Matrix into Sparse Nonstandard Form
+% Mat2SparseStdForm     -   Put Matrix into Sparse Standard Form
+% ndyad                 -   Index dyad of nonstandard wavelet transform
+% NonStdWaveMult        -   Nonstandard Wavelet Matrix Multiplication
+% StdWaveMult           -   Standard Wavelet Matrix Multiplication
+% StretchMatrix         -   Stretch Matrix into BCR Nonstandard Form
+%
+    
+    
+    
+                                           
+%           ******   Fractals/   ********         
+% Fractals:Contents v850 -- Fractal Analysis
+%
+% The routines in this directory perform periodic- biorthogonal wavelet
+% analysis of 1-d and 2-d signals.
+% 
+% FracPartition -- Fractal Partition Function based on wavelet modulus maxima
+% FracScalExp   -- Calculate Moment Generating Function
+% FracSingSpect -- Calculate Spectrum of Local Scaling Exponents
+%    
+                                           
+%           ******   Interpolating/   ********         
+% Interpolating:Contents v850 -- Interpolating Refinements and Wavelet Transforms
+%
+% This directory contains tools for Deslauriers-Dubuc (interpolating)
+% refinement for average-interpolating refinement, and the associated
+% Multi-Resolution analyses and associated Wavelet Transforms.
+%
+% Background Reading: D.L. Donoho, Interpolating Wavelet Transforms;
+%     Smooth Wavelet Decompositions with Blocky Coefficient Kernels
+%
+%          Deslauriers-Dubuc Refinement & Associated Tools
+%
+% DDRefine          -   Deslauriers-Dubuc Refinement Scheme
+% MakeDDFilter      -   Filters for Deslauriers-Dubuc Refinement
+% MakeDDBdryFilter  -   Edge Filters for Deslauriers-Dubuc Refinement
+%
+% FWT_DD            -   Fast interpolating wavelet transform
+% IWT_DD            -   Fast interpolating inverse wavelet transform
+%
+% PlotDDMultiRes  - Display 1-d DD MRA
+%
+% DDDyadDown        -   Interpolating DownSampling Operator
+% DDDyadUp          -   Interpolating UpSampling Operator
+%
+%          Average-Interpolating Refinement & Associated Tools
+%
+% AIRefine          -   Average-Interpolating Refinement Scheme
+% AIRefine2d        -   Average-Interpolating Refinement Scheme (2d)
+% MakeAIFilter      -   Filters for Average-Interpolating Refinement
+% MakeAIBdryFilter  -   Edge Filters for Average-Interpolating Refinement
+%
+% FWT_AI            -   Fast average-interpolating wavelet transform
+% IWT_AI            -   Fast average-interpolating inverse wavelet
+transform
+%
+% PlotAIMultiRes    -   Display 1-d AI MRA
+%
+% AIDyadDown        -   Average-Interpolating DownSampling Operator
+% AIDyadUp          -   Average-Interpolating UpSampling Operator
+%
+%          Utilities
+%
+% HCoarsen2d        -   2-d Coarsening operator based on Haar Pyramid
+% HRefine2d         -   2-d Refinement based on Haar Pyramid
+%
+    
+    
+                                           
+%           ******   Invariant/   ********         
+% Invariant:Contents v850 -- Invariant Wavelet Transform tools
+% 
+% The routines in this directory perform periodic, "stationary" wavelet
+% analysis of 1-d.  By Stationary we mean that the results are in some
+% sense invariant under circulant shift of the signal.
+% 
+% The main tools for all-purpose use are FWT_Stat and IWT_Stat.
+% 
+% Another set of tools has to do with finding the best circulant shift of
+% the signal, in the sense of minimizing the entropy of the transform
+% coefficients.
+% 
+% The underlying computations are carried out by FWT_TI. This looks
+% completely different than in the usual orthogonal wavelet transforms --
+% it resembles closely the wavelet packet calculations.  It is based on
+% applying the usual operators to all shifts of a signal, and results in
+% a special data structure, called TI Table.
+% 
+% The Stationary wavelet transform unscrambles the TI table, producing a
+% Stat Table, which can be displayed and analyzed.
+% 
+% The TI table is that natural structure for use with the adaptive ''best
+% shift'' algorithm
+% 
+%
+%            Wavelet Transforms
+%
+% FWT_ATrou         -  Fast Dyadic Wavelet Transform (periodized, orthogonal)
+% IWT_ATrou         -  Inverse Dyadic Wavelet Transform
+%
+% FWT_Stat          -  Stationary Wavelet Transform, Periodized
+% IWT_Stat          -  Stationary Wavelet Transform, Periodized
+%
+% FWT_TI            -  Translation-Invariant Wavelet Transform
+% IWT_TI            -  Translation-Invariant Wavelet Transform
+% 
+% FWT2_TI           -  Translation-Invariant Wavelet Transform
+% IWT2_TI              Inverse Translation-Invariant Wavelet Transform, 
+%                      based on mean.
+%
+% FWT2_Atrou        -  2-D Fast Dyadic Wavelet Transform (not available yet)
+%
+%            Adaptive Best Circulant Shift algorithm
+%
+% BestShift          -  Best-Shift of all circulant shifts
+% CalcShiftTree      -  Fill Stat Tree with entropy numbers       
+% UnpackShiftCoeffs  -  Unpack basis coeffs from TI Table
+% PackShiftCoeffs    -  Pack basis coeffs into TI Table
+%
+%            Modulus Maxima
+%
+% MM_DWT             -  Modulus Maxima of a Dyadic Wavelet Transform
+% IMM_DWT            -  Inverse Reconstruction of signals from Modulus
+%                       Maxima of a Dyadic Wavelet Transform
+%
+% MM2_DWT            -  2-D Modulus Maxima of a Dyadic Wavelet Transform
+% IMM2_DWT           -  Inverse of MM2_DWT
+%
+%            Display
+%
+% PlotStatTable      -  Plot Stationary Wavelet Transform Coefficients
+%
+%            Utilities
+%
+% MakeDyadFilter     -  Generate Biorthonormal Quadratic Spline Filter Pair
+% MakeATrouFilter    -  Generate Biorthonormal Quadratic Spline Filter Pair
+% ModulusMaxima      -  Maximum of modulus
+% TI_2_Stat          -  Convert TI-transform to Stationary-transform
+% Stat_2_TI          -  Convert Stationary-transform to TI-transform
+%
+    
+                                           
+%           ******   Median/   ********         
+% Median:Contents  v.850 -- Median Interpolating Pyramid Transform Tools
+% 
+%   The routines in this directory perform a new kind of multiresolution
+% decomposition of 1-d signals which is nonlinear and possesses robust
+% properties when applied to highly nongaussian data.
+% The main tools are FMIPT and IMIPT.
+%
+% Background Reading: D.L. Donoho and T. P.Y. Yu, Robust Nonlinear Wavelet
+%     Transform based on Median Interpolation
+%
+%          MIPT Transform
+%
+% FMIPT             -  Forward Median Interpolating Pyramid Transform
+% IMIPT             -  Inverse Median Interpolating Pyramid Transform
+%
+%          Wavelet Transform Displays
+%
+% PlotMRA_MT        -  Display MIPT Multiresolution Decomposition
+% PlotMTCoeff       -  Spike Plot of MIPT Coefficients
+% 
+%          Two-Scale Operators
+% 
+% MedITriadDown      -  Median Interpolating DownSampling Operator (used in FMIPT)
+% MedITriadUp        -  Median Interpolating UpSampling Operator   (used in IMIPT)
+% QuadMedRef         -  Quadratic Median Interpolating Refinement
+% 
+%          Utilities
+%
+% TriMergeSort       -  Triadic Merge Sort
+% quadmedian         -  Computation of block median of quad. poly.
+% 
+
+% 
+% Copyright (c) 1997. David L. Donoho and Thomas P.Y.Yu
+% 
+    
+                                           
+%           ******   Meyer/   ********         
+% Meyer:Contents  v850 -- Periodic Meyer Wavelet Transform Tools
+%
+% The routines in this directory perform periodic, orthogonal Meyer
+% wavelet analysis of 1-d and 2-d signals. The main tools for all-purpose
+% use are FWT_YM and IWT_YM.   The underlying computations are completely
+% different than in the usual orthogonal wavelet transforms -- they are
+% all based on windowing, folding, extension, and projection in the
+% frequency domain -- rather than filtering and decimation in the time
+% domain.
+%
+% These routines have been developed by Eric Kolaczyk as part of his
+% Stanford Ph.D. Thesis, 1994.  Dave Donoho helped out.  The best
+% documentation for the algorithm is currently Eric's Thesis.
+%
+%           Wavelet Transforms
+%
+% FWT_YM            -  Forward Wavelet Transform, Periodized, Meyer Wavelet
+% IWT_YM            -  Inverse Wavelet Transform, Periodized, Meyer Wavelet
+%
+% FWT2_YM           -  Forward Wavelet Transform, 2-d, Periodized, Meyer Wavelet
+% FTWT2_YM			-  Forward Tensor Wavelet Transform, 2-d, Periodized, Meyer Wavelet
+% IWT2_YM           -  Inverse Wavelet Transform, 2-d, Periodized, Meyer Wavelet
+% ITWT2_YM			-  Inverse Tensor Wavelet Transform, 2-d, Periodized, Meyer Wavelet
+%
+%           Display
+%
+% PlotYMMultiRes    -  Plot MRA, Meyer Wavelet
+%
+%           Single-Level Operators
+%
+% CoarseMeyerCoeff  -  Resume coefficients, coarse level C
+% DetailMeyerCoeff  -  Detail coefficients, level j, 3 <= j <= J-2
+% FineMeyerCoeff    -  Meyer Coefficients, finest level J-1
+%
+% DetailMeyerProj   -  Invert Meyer Transform, level j, 3 <= j <= J-2
+% CoarseMeyerProj   -  Invert Meyer Transform, coarse level C
+% FineMeyerProj     -  Invert Meyer Transform, finest level J-1
+%
+%           Extension, Folding, Windowing Operators
+% 
+% CombineCoeff      -  Combine local trig. coeff. into wavelet coeff.
+% SeparateCoeff     -  Separate wavelet coeff. into local trig. coeff.
+%
+% FoldMeyer         -  Fold a vector onto itself using a specified window
+% UnfoldMeyer       -  Unfold a vector using a specified window
+% ExtendProj        -  Extend a projection to all of the integers -n/2+1 -> n/2
+%
+% WindowMeyer       -  auxiliary window function for Meyer wavelets.
+%
+%           Local Trigonometric Transforms
+%
+% QuasiDCT           -  Nearly the "Discrete Cosine Transform of Type I"
+% dct_ii             -  Discrete Cosine Transform of Type II
+% dct_iii            -  Discrete Cosine Transform of Type III
+% QuasiDST           -  Nearly the "Discrete Sine Transform of Type I"
+% dst_ii             -  Discrete Sine Transform of Type II
+% dst_iii            -  Discrete Sine Transform of Type III
+%
+    
+                                           
+%           ******   Orthogonal/   ********         
+% Orthogonal:Contents  v850 -- Orthogonal Wavelet Transform Tools
+%
+%   The routines in this directory perform periodic- and boundary-corrected
+% wavelet analysis of 1-d and 2-d signals. The main tools for all-purpose
+% use are FWT_PO and IWT_PO.
+%
+%          Wavelet Transforms
+%
+% FWT_PO            -  Forward Wavelet Transform, Periodized, Orthogonal
+% IWT_PO            -  Inverse Wavelet Transform, Periodized, Orthogonal
+%
+% FWT_CDJV          -  Forward Wavelet Transform, Boundary-Corrected
+% IWT_CDJV          -  Inverse Wavelet Transform, Boundary-Corrected
+%
+% FWT_IO            -  Forward Wavelet Transform (boundary-corrected)
+% IWT_IO            -  Inverse Wavelet Transform  (boundary corrected)
+%
+% FWT2_PO           -  Forward Wavelet Transform, 2-d MRA, Periodized,
+%                         Orthogonal
+% IWT2_PO           -  Inverse Wavelet Transform, 2-d MRA, Periodized, 
+%                         Orthogonal
+%
+% FTWT2_PO          -  Forward Wavelet Transform, 2-d Tensor, Periodized, 
+%                         Orthogonal
+% ITWT2_PO          -  Inverse Wavelet Transform, 2-d Tensor, Periodized, 
+%                         Orthogonal
+%
+%          Wavelet Transform Displays
+%
+% ContourMultiRes   -  Multi-Resolution Mesh Display of 1-d Wavelet Transform
+% DisplayMutltiRes  -  Mesh, Contour or Image Plot of Multi-Resolution
+% DisplayWaveCoeff  -  Mesh, Contour or Image Plot of Wavelet Coefficients
+% PlotMultiRes      -  Display Mallat-style Multiresolution Decomposition
+% PlotWaveCoeff     -  Spike Plot of Wavelet Coefficients
+%
+%          Filter and Wavelet Generators
+%
+% MakeCDJVFilter    -  Generate Filters for CDJV Boundary-Corrected Transform
+% MakeONFilter      -  Generate Filters for Daubechies, Coiflets, Symmlets, Haarlets
+% MakeOBFilter      -  Makes Orthogonal Boundary conjugate mirror filters 
+%                      of Cohen-Daubechies-Jawerth-Vial
+% MakeWavelet       -  Make periodized orthogonal wavelet
+% Make2dWavelet     -  Make 2-d wavelet
+%
+%          Two-Scale Operators
+% 
+% UpDyadHi          -  Upsampling Hi Pass operator   (used in IWT_PO)
+% UpDyadLo          -  Upsampling Lo Pass operator   (used in IWT_PO)
+% DownDyadHi        -  Downsampling Hi Pass operator (used in FWT_PO)
+% DownDyadLo        -  Downsampling Lo Pass operator (used in FWT_PO)
+% CDJVDyadDown      -  Downsampling operator         (used in FWT_CDJV)
+% CDJVDyadUp        -  Upsampling operator           (used in IWT_CDJV)
+%
+%          Utilities
+%
+% aconv             -  Filtering by periodic convolution of x with
+%                        time reverse of f
+% iconv             -  Filtering by periodic convolution of x with f
+% dyad              -  Access entire j-th dyad of 1-d transform
+% dyad2ix           -  Convert (j,k) index to linear index
+% dyadlength        -  Length and Dyadic Length of 1-d array
+% quad2ix           -  Convert (j,k) index to linear index
+% quadlength        -  Length and Dyadic Length of 2-d array
+% rshift            -  Circulant right shift
+% lshift            -  Circulant left shift
+% MirrorFilt        -  Apply (-1)^t modulation
+% reverse           -  Reverse order of samples
+% UpSampleN         -  Interpolate zeros between samples
+% PlotSpikes        -  Plot an array as as spikes on baseline
+% UpDyadHi          -  Hi-Pass Upsampling operator; periodized
+% UpDyadLo          -  Lo-Pass Upsampling operator; periodized
+%
+    
+    
+    
+                                           
+%           ******   Packets/One-D/   ********         
+% Packets/One-D:Contents v850 -- One-d Wavelet- and Cosine- Packet Tools
+%
+%   The routines in this directory perform wavelet packet analysis and
+% cosine packet analysis of 1-d signals. The main tools for all-purpose
+% use are WPTour and CPTour.  The other tools are all invoked by these.
+%
+%
+%          Wavelet Packet Analysis/Synthesis
+%
+% WPAnalysis           -   Dyadic table of all Wavelet Packet coefficients
+% WPSynthesis          -   Synthesize signal from Wavelet Packet coefficients
+% WPTour               -   Wavelet Packet decomposition & Best Basis analysis
+%
+%
+%          Cosine Packet Analysis/Synthesis
+%
+% CPAnalysis           -   Dyadic table of all Cosine Packet coefficients
+% CPSynthesis          -   Synthesize signal from Cosine Packet coefficients
+% CPTour               -   Cosine Packet decomposition & Best Basis analysis
+%
+%
+%          Search for Best Basis
+%
+% BestBasis            -   Coifman-Wickerhauser Best-Basis Algorithm
+% CalcStatTree         -   Build tree with entropy numbers
+% PlotBasisTree        -   Display basis tree with decorated branch lengths
+%
+%
+%          Packet Table Displays
+%
+% PlotPacketTable      -   Display entries in wavelet, cosine packet tables
+%
+%
+%          Phase Plane Displays
+%
+% ImagePhasePlane      -   Time-Frequency Display using ``image'' graphics
+% PlotPhasePlane       -   Time-Frequency Display using ``plot'' graphics
+%
+%
+%          Comparison of Different Bases
+%
+% CompareStdBases      -   calculate entropy of some standard bases
+% ImageGaborPhase      -   Time-Frequency image with congruent rectangles
+% ImagePhaseVarious    -   compare 4 phase plane displays
+% PlotCoeffComparison  -   compare coefficients in various bases
+% PlotCompressNumbers  -   plot compression numbers for a signal
+% PlotGaborPhase       -   Time-Frequency plot with congruent rectangles
+% PlotPhaseVarious     -   compare 4 phase plane displays
+% PlotWavePhase        -   Time-Frequency plot with wavelet tiling
+%
+% 
+%          Working in a Single Basis
+%
+% FPT_WP               -   Fast transform into specific Wavelet Packet basis
+% IPT_WP               -   Fast reconstruction from specific Wavelet Packet basis
+% FPT_CP               -   Fast transform from specific Cosine Packet basis
+% IPT_CP               -   Fast reconstruction from specific Cosine Packet basis
+%
+%
+%          Synthesis of Individual Basis Elements
+%
+% MakeCosinePacket     -   Make cosine packet
+% MakeWaveletPacket    -   Make periodized orthogonal wavelet packet
+%
+%
+%          Cosine Packet Infrastructure
+%
+% fold                 -   folding projection with (+,-) polarity
+% edgefold             -   folding projection with (+,-) polarity at edges
+% unfold               -   undo folding projection with (+,-) polarity
+% edgeunfold           -   undo folding projection with (+,-) polarity at edges
+% MakeONBell           -   Make Bell for Orthonormal Local Cosine Analysis
+% dct_iv               -   Type (IV) Discrete Cosine Xform
+%
+%
+%          Data Access Functions
+%
+% CalcWPLocation       -   calculate location of wavelet packet entry
+% node                 -   tree indexing function
+% packet               -   packet table indexing
+% MakeBasis            -   Create a basis tree for a standard basis
+% PackBasisCoeff       -   Insert basis coefficients into packet table
+% UnpackBasisCoeff     -   Extract basis coefficients from packet table
+% UnpackStatValue      -   Unpack the value for given basis from the stat tree
+%
+%
+%          Utilities
+%
+% CalcTreeHeight       -   Utility for PlotBasisTree
+% DrawHeisenberg       -   Utility for PlotPhasePlane
+%
+    
+    
+                                           
+%           ******   Packets/Two-D/   ********         
+% Packets/Two-D:Contents v850 -- 2-d Wavelet- and Cosine- Packet Tools
+%
+%   The routines in this directory perform wavelet packet analysis and
+% cosine packet analysis of 2-d signals. The main tools for all-purpose
+% use are WP2dTour and CP2dTour.  The other tools are all invoked by these.
+%
+%          Wavelet Packet Analysis/Synthesis
+%
+% WP2dTour             -   Wavelet Packet decomposition & Best Basis analysis
+% WP2Tour              -   Wavelet Packet decomposition & Best Basis analysis 
+% FPT2_WP              -   Analyze signal into specific 2-d Wavelet Packet basis
+% IPT2_WP              -   Synthesize signal from Wavelet Packet coefficients
+%
+%          Cosine Packet Analysis/Synthesis
+%
+% CP2dTour             -   Cosine Packet decomposition & Best Basis analysis
+% CP2Tour              -   Cosine Packet decomposition & Best Basis analysis
+% FPT2_CP              -   Analyze signal into specific 2-d Cosine Packet basis
+% IPT2_CP              -   Synthesize signal from Cosine Packet coefficients
+% 
+%
+%          Search for Best Basis
+%
+% Best2dBasis          -   Coifman-Wickerhauser Best-Basis Algorithm
+% Calc2dStatTree       -   Build tree with entropy numbers from image
+% Calc2dSQTree         -   Build tree with entropy numbers from packet table
+% Plot2dBasisTree      -   Display basis quad tree with decorated branch lengths
+% Plot2dPartition      -   Show partition of Time/Freq plane by best basis
+%
+%
+%          Packet Table Displays
+%
+% There are no Packet Tables in 2-d.  Data storage requirements would be overwhelming.
+%
+%
+%          Phase Plane Displays
+%
+% There are none in 2-d. TF ``Plane'' is a four-space. Difficult to visualize.
+% 
+%
+%          Synthesis of Individual Basis Elements
+%
+% Make2dWaveletPacket  -   Make Individual 2-d Wavelet Packet
+% Make2dCosinePacket   -   Make Individual 2-d Cosine Paket
+%
+%
+%          Wavelet Packet Infrastructure
+%
+% DownQuad             -   Split 2-d array into four subbands
+% UpQuad               -   Merge four subbands into 2-d array
+%
+%
+%          Cosine Packet Infrastructure
+%
+% dct2_iv              -   Type (IV) Discrete Cosine Transform
+%
+%
+%          Data Access Functions
+%
+% qnode                -   tree indexing function
+% quadbounds           -   determine bounds of 2-d packet in 2-d array
+% qpkt2ix              -   convert 2-d packet indices to linear indices
+% BuildFBITree         -   create basis tree used for fingerprint compression
+% Calc2dPktTable       -   Put Wavelet/Cosine Packet Coefficients into 2-d Table
+% Unpack2dBasisCoef    -   extract 2-d packet coeffs from table 
+%
+%          Utilities
+%
+% Calc2dTreeHeight     -   Utility used by Plot2dBasisTree
+% CalcEntropy          -   Utility used by Make2dBasisTree
+%
+    
+    
+    
+                                           
+%           ******   Papers/   ********         
+% Papers:Contents v850 -- Reproducing Figures from Published Articles
+% 
+% This directory contains several subdirectories; each one of these
+% contains scripts that were used to produce figures in our published
+% articles.  As new articles are written by members of our group, we will
+% add new subdirectories. Each subdirectory contains a ``demo'' file
+% which allows one to reproduce the figures in the corresponding article.
+% 
+% When a demo file is invoked, a menu bar will appear on the screen. 
+% Clicking with the mouse on the menu item ``Show All Figures'' will
+% produce, in sequence, each figure in the corresponding article.  As
+% each figure appears in the Matlab figure window, the command window
+% will contain narrative explaining what the figure window illustrates.
+% 
+% The directory name, corresponding paper name and corresponding demo name
+% are listed herein:
+% 
+% Adapt           -   ``Adapting to Unknown Smoothness via Wavelet Shrinkage''
+%                       (AdaptDemo)
+% Asymp           -   ``Wavelet Shrinkage: Asymptopia?'' (AsympDemo)
+% Blocky          -   ``Smooth Wavelet Decomposition with Blocky Coefficient
+%                       Kernals'' (BlockyDemo)
+% Correl          -   ``Wavelet Threshold Estimators for Data with
+%                       Correlated Noise" (CorrelDemo)
+% Ideal           -   ``Ideal Spatial Adaptation via Wavelet Shrinkage''
+%                       (IdealDemo)
+% MinEntSeg       -   ``On Minimum Entropy Segmentation'' (MESDemo)
+% MIPT            -   ``Nonlinear Wavelet Transforms based on Median-
+%                       Interpolation'' (MIPTDemo)
+% RiskAnalysis    -   ``Exact Risk Analysis of Wavelet Regression'' (RiskDemo)
+% ShortCourse     -   ``Nonlinear Wavelet Methods for Recovery of Signals,
+%                       Densities, Spectra and Images from Incomplete and
+%                       Noisy Data'' (SCDemo)
+% Tour            -   ``Wavelet Shrinkage and W.V.D. -- A Ten-Minute Tour''
+%                       (TourDemo)
+% SpinCycle       -   ``Translation-Invariant De-Noising'' (SpinDemo)
+% VillardDeLans   -   ``WaveLab and Reproducible Research'' (VdLDemo)
+%
+                                           
+%           ******   Pursuit/   ********         
+% Pursuit:Contents v802 -- Matching Pursuit with Wavelet- and Cosine- Packet Dictionaries
+%
+%   The routines in this directory perform matching pursuit decomposition
+% and reconstruction for 1-d signals. The main tools for all-purpose
+% use are WPPursuit and CPPursuit.
+%
+%
+%          Matching Pursuit in Wavelet Packets Dictionary
+%
+% WPMPursuitTour      -   Wavelet Packet atomic decomposition
+% WPPursuitTour       -   Matching Pursuit Tour with Wavelet Packet Dictionary
+% WPPursuit           -   Atomic Decomposition into Wavelet Packets by Matching Pursuit
+% WPPursuitBF         -   Matching Pursuit using Wavelet Packet Dictionary with backfitting
+% WPAtomicSynthesis   -   generate signal from list of WP-components
+% FWPAtomicSynthesis  -   Fast Wavelet Packet synthesis from atom list
+% FWPSynthesis        -   synthesize signal from full wavelet packet table
+%
+%
+%          Matching Pursuit in Cosine Packets Dictionary
+%
+% CPPursuit           -   Atomic Decomposition into Cosine Packets via Matching Pursuit
+% CPPursuitBF         -   Matching Pursuit using Cosine Packet Dictionary with backfitting
+% CPPursuitTour       -   Matching Pursuit Tour with Cosine Packet Dictionary
+% CPAtomicSynthesis   -   generate signal from list of CP-components
+% FCPSynthesis        -   synthesize signal from full cosine packet table
+%                    
+%                    
+%          Basis Pursuit and Gabor Analysis (not available yet)
+%
+% GaborPursuitTour    -   Matching pursuit algorithm in a Gabor dictionary
+% WPBPursuitTour      -   Basis pursuit algorithm in a wavelet packet dictionnary
+% CPBPursuitTour      -   Basis pursuit algorithm in a cosine packet dictionnary
+%
+%
+%          Displays  
+%                    
+% PlotAtomicPhase     -   Time-Frequency display of atom list using ``plot'' graphics
+% ImageAtomicPhase    -   Time-Frequency display of atom list using ``image'' graphics
+% PlotSynthesisTable  -   Display entries in atomlist as wavelet/cosine packet
+%
+%
+%          Utilities
+%
+% WPImpulse           -   full WP packet table analysis of a single WP basis element
+% CPImpulse           -   full CP packet table analysis of a single CP basis element
+% pkt2ix              -   convert packet table index to linear index
+% ix2pkt              -   convert packet table index to linear index
+% MakeSynthesisTable  -   convert atom list to packet table
+% MonitorPursuit      -   display intermediate Pursuit progress
+%
+    
+    
+    
+                                           
+%           ******   TimeFrequency/   ********         
+% TimeFrequency:Contents v850 -- Time-Frequency Distribution Tools
+%
+% The routines in this directory compute various time-frequency
+% distributions of 1-d signals.
+%
+% WindowFT       - Window Fourier Transform
+% IWindowFT      - Inverse Window Fourier Transform
+% Ridge_WindowFT - Find Ridges of Window Fourier Transform
+% CohenDist      - Choi William Distribution
+% Spectrogram    - Time-Varying Spectrum
+% WVDist         - Wigner-Ville Distribution
+% WignerDist     - Alias-Free Wigner-Ville Distribution (new by Maureen)
+% WVDist_AF      - Alias-Free Wigner-Ville Distribution (old by Shaobing)
+% TFDist_AF      - Alias-Free Generalized Discrete Time-Frequency Distribution
+%    
+    
+                                           
+%           ******   Utilities/   ********         
+% Utilities:Contents v850 -- Utilties for Writing Scripts
+%
+% AppendTitle       -   Utility to Build Title String
+% AutoImage         -   Automatic Scaling for Image Display
+% CutDyad           -   Truncate signal to Dyadic length
+% GrayImage         -   Image display of Gray-scaled digital images
+% HitAnyKey         -   Tool for pausing in scripts
+% LockAxes          -   Version-independent axis command
+% MakeTiledFigures  -   Tile the screen with figures
+% PadDyad           -   Zero-fill signal to Dyadic length
+% RegisterPlot      -   Add legend with file name, date, flag
+% ShapeAsRow        -   Reshape 1d vector as row
+% ShapeLike         -   Reshape first argument like second argument
+% UnlockAxes        -   Version-independent axis command
+% WaitUntil         -   Burn up CPU cycles until sec seconds elapse
+% WhiteNoise        -   Version-independent white noise generator
+% ifprint           -   Conditional printing to postscript file
+% log2lin           -   Transform log-scale image to linear-scale image
+% pic256            -   Show image of 256 gray scale
+% rnshift           -   Circular right shift of 1-d signal
+% versaplot         -   Version-independent plot routine
+%     
+    
+    
+                                           
+%           ******   Workouts/   ********         
+% Workouts:Contents v850 -- WaveLab Workouts
+%
+% This directory contains several subdirectories, each containing
+% scripts to "work out" various aspects of wavelet theory and
+% applications.  They are:
+%
+% BestOrthoBasis    -   Workouts for Best Ortho Basis (Coifman-Wickerhauser)
+%
+% MatchingPursuit   -   Workouts for Matching Pursuits (Mallat-Zhang)
+%
+% MultiFractal      -   Workouts illustrating some aspects
+%                       of the Continuous Wavelet Transform
+%
+% Toons             -   "Cartoon Guide to Wavelets"
+%
+                                           
+%           ******   Workouts/BestOrthoBasis/   ********         
+% BBWorkout:Contents -- BestBasis Workout
+%
+% The aim of this directory is to give the Best-Basis
+% Routines a work-out in some systematic way.
+%
+% To this end, a variety of synthetic and real signals is
+% analyzed using Best-Basis in both Cosine Packet and Wavelet
+% Packet Dictionaries.
+%
+% We also illustrate illustrations of time-frequency tilings 
+% and tree <--> basis correspondence
+%
+% BBWork01 -- Illustrate Time-Frequency Tiling  by Wavelet Packets
+% BBWork02 -- Illustrate Time-Frequency Tiling by Cosine Packets
+% BBWork03 -- Ilustrate Tiling <--> Tree Correspondence, WP Dict;
+% BBWork04 -- Ilustrate Tiling <--> Tree Correspondence,CP Dict;
+% BBWork11 -- Illustrate WP Methodology on LoSine, SlowChirp
+% BBWork12 -- Illustrate CP Analysis Techniques on SlowChirp
+% BBWork21 -- Wavelet Packet Tour on Four Basic Signals
+% BBWork22 -- Wavelet Packet Tour on Four Complex Signals
+% BBWork31 -- Cosine Packet Tour on Four Basic Signals
+% BBWork32 -- Cosine Packet Tour on Four Complex Signals
+% BBWork41 -- Illustrate CP/WP Analysis Techniques on Seismic
+% BBWork42 -- Illustrate CP/WP Analysis Techniques on Warble
+% BBWork61 -- Compression Numbers on Four Basic Signals
+%
+% PRINTING Note
+%   A key feature of these scripts is their ability to print copies
+%   of all the plots they generate.  The variable PRINTING controls this
+%   If PRINTING==1, postscript files will be generated for all plots
+%   made by running a script. if PRINTING==0, no postscript files will
+%   be generated.  Set this variable before you run any script.
+%
+    
+    
+                                           
+%           ******   Workouts/MatchingPursuit/   ********         
+% MPWorkout:Contents -- Matching Pursuit Workout
+%
+% The aim of this directory is to give the Matching Pursuit
+% Routines a work-out in some systematic way.
+%
+% To this end, a variety of synthetic and real signals is
+% analyzed using Matching Pursuit in both Cosine Packet and
+% Waveket Packet Dictionaries.
+%
+% For each signal analyzed, we use [CW]PPursuitTour to present a
+% display that shows the synthesis table used, the residuals from
+% Matching Pursuit, the Compression Numbers, and the phase plane 
+% that is generated.
+%
+% We also present, in batches of four objects at a time, plots of the
+% compression numbers, equivalent dimensions, and equivalent rates
+% for objects:
+%
+%   in MPWork21.m (WP); in MPWork31.m (CP); in MPWork61.m (Wrap-up)
+%
+%       HeaviSine
+%       Doppler
+%       QuadChirp
+%       MishMash
+%
+%   in MPWork22.m (WP); in MPWork32.m (CP); in MPWork62.m (Wrap-up)
+%
+%       Sorrows
+%       Riemann
+%       Seismic
+%       Tweet
+%
+% MPWork00 -- Basics of Matching Pursuit -- Illustrate Step-by-Step Behavior
+% MPWork21 -- Matching-Pursuit, Wavelet Packet Tour on Four Basic Signals
+% MPWork22 -- Matching-Pursuit, Wavelet Packet Tour on Four Complex Signals
+% MPWork31 -- Matching-Pursuit, Cosine Packet Tour on Four Basic Signals
+% MPWork32 -- Matching-Pursuit, Cosine Packet Tour on Four Complex Signals
+% MPWork61 -- Matching-Pursuit, Best-Basis Compression # Comparison on Four Basic Signals
+% MPWork62 -- Matching-Pursuit, Best-Basis Compression # Comparison on Four Complex Signals
+%
+%
+% PRINTING Note
+%   A key feature of these scripts is their ability to print copies
+%   of all the plots they generate.  The variable PRINTING controls this
+%   If PRINTING==1, postscript files will be generated for all plots
+%   made by running a script. if PRINTING==0, no postscript files will
+%   be generated.  Set this variable before you run any script.
+%
+    
+    
+                                           
+%           ******   Workouts/MultiFractal/   ********         
+% MultiFractal:Contents -- Continuous Wavelet Transform Workouts
+%
+% This directory currently consists of two scripts that illustrate
+% various aspects of the continuous wavelet transform on both a
+% Cantor-type signal and fractional Brownian motion.
+%
+% We hope to add workouts to reproduce the figures in the book by
+% Arneodo et al. ("Ondelettes, Multifractals, et Turbulences,"
+% Diderot Edition, Paris) and the paper by Alexandrescu et al.
+% ("Detection of Geomagentic Jerks using Wavelet Analysis," 
+% Journal of Geophysical Research Vol. 10, pp. 12,557-12,572).
+%
+% 
+% MFWork01 -- CWT Analysis of Cantor Signal
+% MFWork02 -- CWT Analysis of Brownian Signal
+%
+
+    
+    
+                                           
+%           ******   Workouts/Toons/   ********         
+% Toons:Contents v850 -- Cartoon Guide to Wavelets
+%
+% This directory contains more than 100 scripts which exercise various
+% features of WaveLab.  A comprehensive outline of these scripts and
+% what they do is given below.  
+%
+% 1.0 Wavelets
+%     1.1 Types of Wavelets
+%         Haar, D4,S8, Coiflet C3                         toon0111
+%         Dubuc-Deslauriers Wavelets                      toon0112
+%         Average-Interpolating Wavelets                  toon0113
+%         Meyer Wavelets                                  toon0114
+%     1.2 Gender of Wavelets
+%         Father & Mother Haar                            toon0121
+%         Father & Mother NearSymm8                       
+%     1.3 Scale Families of Wavelets
+%         Plot 10 scales; start at V0, W0,                toon0131
+%         Some Symm8 at each scale, n = 1024              toon0132
+%     1.4 Daubechies D4 Wavelets                          toon0140
+%         Boundary Wavelets                               toon0141
+%         Periodic Wavelets                               toon0142
+%     1.5 Wavelet Analysis of Functions
+%         1.5.1 Ramp                                      toon0151
+%         1.5.2 Doppler Examples                          toon0152
+%     1.6 MRA Analysis of Functions
+%         Ramp and Doppler Examples                       toon0161
+%         Doppler Examples                                
+%     1.7 Smoothness of Wavelets
+%         Wavelet, First through Third Differences
+%         D4,                                             toon0171
+%         S8,                                             toon0172 
+%         S6,                                             toon0173
+%         Interpolating 11                                toon0174
+%     1.8 Frequency Content of Wavelets
+%         Scale Families of Waveforms
+%             S8                                          toon0181
+%             Haar                                        toon0182
+%         Scale Families of their Fourier Transforms
+%             S8                                          toon0183
+%             Haar                                        toon0184
+% 2.0 2-d Wavelets
+%     2.1 Mesh Plots of four wavelets
+%             1 page with 4 subplots                 
+%                 Haar                                    toon0211
+%                 S8                                      toon0212
+%     2.2 Image Plots of Four Wavelets
+%             1 page with 4 subplots
+%                 Haar                                    toon0221
+%                 S8                                      toon0222
+%     2.3 2-d Wavelet Analysis of Synthetic Objects       
+%         2.3.1 Stick Figure                              toon0231
+%         2.3.2 Box with X in it                          toon0232
+%         2.3.3 Ingrid                                    toon0233
+% 3.0 Wavelet Analysis
+%     3.1 Analysis of Smooth Signals
+%         4 Subplots: Signals, Wavelet Transform,
+%         Levelwise Amplitude of Ordered Coeffs
+%         Sinusoid, Haar                                  toon0311
+%         Sinusoid, S8                                    toon0312
+%     3.2 Analysis of Piecewise Polynomials
+%     3.3 Analysis of Singularities
+%         Signals Double Exponential Square Root          toon0331
+%                 Heaviside           Dirac
+%         Wavelet Transforms                              toon0332
+%         MRA's                                           toon0333
+%         Levelwise decay of Coefficients                 toon0334
+%         Ordered Coefficients                            toon0335
+%     3.4 Comparison of Wavelet Types
+%         Levelwise Amplitude, Ordered Coeffs
+%         Haar/S8
+%             (1) Doppler Levelwise                       toon0341
+%             (2) Doppler Ordered                         toon0342
+% 4.0 Wavelet Synthesis
+%     4.1 Partial Reconstructions
+%         Wavelet Reconstruction 100 First-m, Best-m
+%         Sinusoid/S8                                     toon0411
+%         Doppler/S8                                      toon0412
+%     4.2 Comparison of Two Wavelets
+%         Signal Doppler                      
+%         Reconstruction Haar, S8 Best 50                 toon0421
+%         First 64                                        toon0422
+%     4.3 Compression Number
+%         Four Objects                                    toon0431               
+%         Four First-m plots                              toon0432
+%         Four Best-m plots                               toon0433
+%     4.4 Comparison with other transforms
+%         Signal Doppler/Bumps                        
+%         Reconstruction DCT// S8 Best 64                 toon0441
+%         First 64                                        toon0442
+%         Four First-m plots - DCT & DWT                  toon0443
+%         Four Best-m plots - DCT & DWT                   toon0444
+%     4.5 Unconditional Basis Property
+%         Ramp Object                                     toon0451
+%         Reconstruction by Perturbing DCT                
+%         Reconstruction by Perturbing Haar               
+%         Reconstruction by Perturbing S8                 
+% 5.0 Applications
+%     5.1 Data Expansion
+%         Lincoln Refinement Scheme
+%         32*32 Lincoln                                   toon0511
+%         32*32 Lincoln as upper corner of 128*128 black  toon0512
+%         128*128 result of Inverse Transforming          toon0513
+%         32*32 & 128*128 side-by-side                    toon0514
+%     5.2 Progressive Transmission
+%         MRI Image                                       toon0521
+%         FWT of MRI Image                                toon0522
+%         4 subplots -- several approximations First-m    toon0523
+%         4 subplots -- several approximations Best-m     toon0524
+%     5.3 Data Compression 1-d
+%         1-d Seismic signal Reconstruction 100 wavelet   toon0531
+%         1-d Seismic signal Reconstruction 100 DCT       toon0532
+%         Transforms & Compression numbers                toon0533 
+%     5.4 Data Compression 2-d Ingrid Image
+%         2-d Ingrid Image                                toon0541
+%         FWT Imgrid Image                                toon0542
+%         Nonzero Patterns                                toon0543
+%         Co/Dec 95% FWT                                  toon0544
+%         Co/Dec 95% DCT                                  toon0545
+%         Compression Numbers                             toon0546
+%         Error Comparisons                               toon0547
+%         Side-by-Side                                    toon0548
+%     5.5 De-Noising
+%         Display spatially inhomogeneous signals         toon0551
+%         Display noisy versions of the above             toon0552
+%         Perform wavelet shrinkage                       toon0553
+%         Reconstruction using AutoSplines                toon0554
+%     5.6 Fast Algorithms         
+%         Depict the matrix                               toon0561
+%         Take the 2-d wavelet transform of the matrix    toon0562
+%         Show ordered coeffs of the transform            toon0563
+%         Compress the wavelet transform                  toon0564
+%         Stretch the matrix into nonstandard form        toon0565
+%     5.7 Construction & Analysis of Self-Similar Signals
+% 6.0 Messy Details
+%     6.1 Filtering
+%     6.2 Transfer Functions
+% 7.0 Wavelet Packets
+%     7.1 Some Wavelet Packets                            toon0711
+%     7.2 Frequency Content of WP                         toon0721
+%     7.3 WP As TF Atoms                                  toon0731
+%                                                         toon0732
+%     7.4 WP Decomposition of SlowChirp                   toon0741
+%                                                         toon0742
+% 8.0 Cosine Packets
+%     8.1 Some Cosine Packets                             toon0811
+%     8.2 Frequency Content of CP                         toon0821
+%     8.3 CP as TF atoms                                  toon0831
+%                                                         toon0832
+%     8.4 CP Decomposition of SlowChirp                   toon0841
+%                                                         toon0842
+% 9.0 Best Basis Methodology
+%     9.1 Wavelet Packet table                            toon0911
+%     9.2 Cosine Packet Table                             toon0912
+%     9.3 Bases as disjoint covers                        toon0913
+%     9.4 Bases as Trees                                  toon0914
+%     9.5 Bases as Partitions                             toon0915
+%     9.6 Trees as tilings                                toon0916
+% 10.0 Wavelet Packet Analysis
+%     10.1 LoSine                                         toon1001
+%     10.2 Ramp                                           toon1002
+%     10.3 Doppler                                        toon1003
+%     10.4 Dirac                                          toon1004
+%     10.5 HiSine                                         toon1005
+%     10.6 LinChirp                                       toon1006
+%     10.7 QuadChirp                                      toon1007
+% 11.0 Cosine Packet Analysis
+%     11.1 LoSine                                         toon1101
+%     11.2 Ramp                                           toon1102
+%     11.3 Doppler                                        toon1103
+%     11.4 Dirac                                          toon1104
+%     11.5 HiSine                                         toon1105
+%     11.6 LinChirp                                       toon1106
+%     11.7 QuadChirp                                      toon1107
+% 12.0 Applications of 1-d packet analysis
+%     12.1 Caruso De-Noising                              toon1201
+%     12.2 Tweet Compression                              toon1202
+%     12.3 TF Analysis of Tweet                           toon1203
+%     12.4 Speech Segmentation                            toon1204
+% 13.0 Comparison CP/WP
+%     13.1 Time-Frequency Localization
+%         13.1.1 Spectrogram                              toon1311
+%         13.1.2 TFD                                      toon1312
+%     13.2 Artifacts
+%         13.2.1 WP Tweet                                 toon1321
+%         13.2.2 CP Sorrows                               toon1322
+%         13.2.3 CP Clicks                                toon1323
+% 14.0 Gory Details
+%     14.1 WP
+%         14.1.1 Gray Code Indexing                       toon1411
+%         14.1.2 Location of Wavelet Packets              toon1412
+%     14.2 CP
+%         14.2.1 Bells                                    toon1421
+% 15.0 2-d Packets Analysis
+%     15.1 Some 2-d Wavelet Packets                       toon1501
+%     15.2 Some 2-d Cosine Packets                        toon1502
+%     15.3 2-d Wavelet Packet Decomposition               toon1503
+%     15.4 2-d Cosine Packet Decomposition                toon1504
+% 16.0 Applications of 2-d Packet Analysis
+%     16.1 FBI Fingerprint
+%         16.1.1 Display fingerprint and basis tree       toon1611
+%         16.1.2 First- and best-  5% reconstructions     toon1612
+%         16.1.3 First- and best- 10% reconstructions     toon1613
+%     16.2 Fast KLE                                   
+%     16.3 TF Analysis                                    
+% 17.0 Matching Pursuit
+%     17.1 Stepwise Behavior of Residual                  toon1701
+%     17.2 Behavior of Analysis Table                     toon1702
+%     17.3 Functions being Removed                        toon1703
+%     17.4 Atomic Phase Plane Plots                       toon1704
+% 18.0 Applications of Matching Pursuit
+%     18.1 Synthetic Signal; Sorrows                      toon1801
+%     18.2 Greasy Signal                                  toon1802
+% 
+    
+    
+
+    

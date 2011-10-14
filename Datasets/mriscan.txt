@@ -1,0 +1,15 @@
+mriscan.raw -- Gray-scale MRI brain scan
+
+Access
+    Brain = ReadImage('MRIScan');
+  
+Size
+    256 by 256
+  
+Gray Levels
+    256
+  
+Source
+    Obtained from the NIH IMAGE program, a public domain
+    software package distributed freely by the National
+    Institutes of Health.

@@ -1,0 +1,17 @@
+lenna.raw -- Gray-scale image of Lenna
+ 
+Access
+    Lenna = ReadImage('Lenna');
+   
+Size
+    256 by 256
+ 
+Gray Levels
+    256
+
+Description
+	A classic image-processing example, particularly useful for
+	illustrating points due to its high quality.
+ 
+Source
+	Originally Playboy Magazine; now folklore

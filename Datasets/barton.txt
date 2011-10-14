@@ -1,0 +1,19 @@
+barton.raw -- Gray-scale reproduction of Barton painting
+
+Access
+    barton = ReadImage('Barton');
+  
+Size
+    512 by 512
+
+Gray Levels
+    256
+
+Source
+    Supplied by Jan-Olov Stromberg, who used it as the example dataset
+    in his article "Image Compression using Franklin Wavelets." In that
+    article he uses orthogonal wavelets defined by recursive filtering
+    to compress this image by factors of 50 to 1.
+
+    Jan-Olov Stromberg is the original inventor of smooth orthonormal
+    Wavelet bases; see his article in the Zygmund Festschrift

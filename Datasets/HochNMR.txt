@@ -1,0 +1,13 @@
+HochNMR.asc -- NMR signal
+
+Access
+    nmrsig = ReadSignal('HochNMR');
+  
+Size
+    1024 by 1
+
+Source
+    This NMR signal was provided by J.C. Hoch, of the
+    Rowland Institute for Science, Cambridge, Mass.
+
+ 

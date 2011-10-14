@@ -1,0 +1,13 @@
+sunspots.asc -- Monthly sunspot numbers
+
+Access
+    spots = ReadSignal('Sunspots');
+ 
+Size
+    2700 by 1
+
+Description
+    Monthly sunspot numbers for 225 years.
+
+Source
+    Jeff Scargle

@@ -1,0 +1,14 @@
+phone.raw -- Gray-scale image of telephone
+
+Access
+    ETPhoneHome = ReadImage('Phone');
+  
+Size
+    128 by 128
+
+Gray Levels
+    256
+
+Description
+    Images liks this are used often in the edge
+    detection literature of computer vision.

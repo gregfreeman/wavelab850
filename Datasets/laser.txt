@@ -1,0 +1,17 @@
+laser.asc -- Signal from Time Series Competition
+
+Access
+    Laser = ReadSignal('Laser');
+  
+Size
+    25,000 by 1
+ 
+Description
+    This dataset was part of the time series competition
+    conducted by the Santa Fe Institute.  See the book
+    "The Future of Time Series" by Andreas Weigend and
+    Neal Gershenfeld for more information.
+   
+Source
+    Obtained by anonymous FTP from the Santa Fe Institute's
+    FTP server.

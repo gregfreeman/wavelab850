@@ -1,0 +1,22 @@
+canaletto.raw -- Gray-scale image of Canaletto painting
+
+Access
+    Canal = ReadImage('Canaletto');
+  
+Size
+    512 by 512
+
+Gray Levels
+    256
+
+Description
+    This image was used in an article by P. Perona and J. Malik,
+    "Scale-Space Filtering by Anisotropic Diffusions," IEE PAMI.
+    Malik digitized the image from a small reproduction of the
+    original, which hangs in the National Gallery in Washington,
+    D.C. and was painted in Venice by Antonio Canal, nicknamed
+    `Canaletto,'' in 1720.
+      
+Source
+    Obtained from John Canny and Jitendra Malik, of EECS at
+    U.C. Berkeley.

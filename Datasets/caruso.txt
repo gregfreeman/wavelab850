@@ -1,0 +1,20 @@
+caruso.asc -- Digital signal of Caruso singing
+
+Access
+    Enrico = ReadSignal('Caruso');
+  
+Size
+    50,000 by 1
+
+Sampling Rate
+    8192 Hz
+    
+Description
+    In MATLAB, the command sound(Enrico,8192) will play this sound
+    back at the right pitch.
+    
+Source
+    Obtained by anonymous FTP from the xwplw package
+    developed by R.R. Coifman and Fazal Majid at Yale University.
+    You can get this X-windows adapted waveform analysis
+    package by anonymous FTP to math.yale.edu.

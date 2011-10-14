@@ -1,0 +1,14 @@
+transients.asc -- Mallat/Zhang's artificial signal
+
+Access
+    spots = ReadSignal('Transients');
+ 
+Size
+    512 by 1
+
+Description
+    Built from time-frequency transients of different types.
+  
+Source
+    See Mallat and Zhang's 1993 article on Matching Pursuit.
+ 

@@ -1,0 +1,2 @@
+Artificial signal in the article of Mallat & Zhong
+Length = 256

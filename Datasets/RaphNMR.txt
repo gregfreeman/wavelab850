@@ -1,0 +1,17 @@
+RaphNMR.asc -- NMR signal
+
+Access
+    nmrsig = ReadSignal('RaphNMR');
+   
+Size
+    1024 by 1
+
+Source
+	MRS Unit, VA Medical Center, San Francisco.
+	Adrain Maudsley, Ph.D., Professor of Radiology.
+	
+    This NMR signal was obtained from Chris Raphael, then a
+    postdoctoral fellow in the Department of Statistics at
+    Stanford University who was working on Hidden Markov Models 
+    for restoring NMR Spectra.
+ 

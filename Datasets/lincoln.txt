@@ -1,0 +1,21 @@
+lincoln.raw -- Gray-scale image of Honest Abe
+
+Access
+    Abe = ReadImage('Lincoln');
+  
+Size
+    64 by 64
+
+Gray Levels
+    32
+   
+Description
+    Made famous in a psycho-optical experiment by Harmon
+    and Julesz, who showed that the blocky structure of
+    a 16-by-16 version of this image makes it hard to tell
+    who the subject is.
+   
+Source
+    Typed in by hand from tables in the book
+    "Digital Image Processing" by Rafael C. Gonzalez
+    and Richard E. Woods, published by Addison Wesley.

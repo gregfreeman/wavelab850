@@ -1,0 +1,19 @@
+tweet.asc -- Digital signal of a bird singing
+
+Access
+    Tweet = ReadSignal('Tweet');
+  
+Size
+    8,192 by 1
+
+Sampling Rate
+    22 kHz
+    
+Source
+    Doug Jones, University of Illinois
+    digitized from D.J. Borror, Common Bird Songs (Cassette),
+    Dover Publications, Inc., New York, 1984.
+  
+Description
+    In MATLAB, the command sound(Tweet,22000) will play
+    this sound back at the right pitch.

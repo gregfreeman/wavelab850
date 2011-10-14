@@ -1,0 +1,22 @@
+coifman.raw -- Gray-scale image of R.R. Coifman
+ 
+Access
+    Raphy = ReadImage('Coifman');
+   
+Size
+    256 by 256
+ 
+Gray Levels
+    256
+
+Description
+    Ronald R. Coifman, Professor of Mathematics at Yale University,
+    has developed much of the field that is now known as "adapted
+    wavelet analysis."  He has invented, in collaboration with 
+    Y. Meyer, wavelet packets and cosine packets, as well as the
+    Coifman-Wickerhauser best-basis algorithm.
+
+Source
+    Photograph of R.R. Coifman at the 1993 AMS winter meetings
+    in San Antonio, Texas. Taken by David Donoho with Canon XapShot
+    video still-frame camera.

@@ -1,0 +1,13 @@
+seismic.asc -- Seismic signal
+
+Access
+    Shakin = ReadSignal('Seismic');
+  
+Size
+    1024 by 1
+
+Source
+    This seismic signal is distributed throughout the
+    seismic industry as a test dataset that comes free
+    as part of the PROMAX seismic processing system.
+ 

@@ -1,0 +1,21 @@
+daubechies.raw -- Gray-scale image of Ingrid Daubechies
+ 
+Access
+    Ingrid = ReadImage('Daubechies');
+   
+Size
+    256 by 256
+ 
+Gray Levels
+    256
+
+Description
+    Ingrid Daubechies is a very active researcher in the field of
+    wavelet analysis and author of the book "Ten Lectures on Wavelets,"
+    SIAM, 1992.  She is inventor of smooth orthonormal wavelets
+    of compact support.
+ 
+Source
+    Photograph of Ingrid Daubechies at the 1993 AMS winter meetings
+    in San Antonio, Texas. Taken by David Donoho with Canon XapShot
+    video still-frame camera.

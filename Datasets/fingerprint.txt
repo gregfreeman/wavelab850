@@ -1,0 +1,19 @@
+fingerprint.raw -- Gray-scale fingerprint image
+
+Access
+    Smudge = ReadImage('Fingerprint');
+  
+Size
+    512 by 512
+
+Gray Levels
+    256
+ 
+Source
+    This is a cropped version of a fingerprint which was
+    obtained by anonymous FTP from Los Alamos National Labs.
+    The fingerprint was made available by Christopher Brislawn,
+    and is aparently referenced in the article ``The FBI
+    wavelet/scalar qunatization standard for gray-scale
+    fingerprint image compression'' by J. Bradley, C. Brislawn,
+    and T. Hopper.  Proc SPIE Vol. 1961, 1993.

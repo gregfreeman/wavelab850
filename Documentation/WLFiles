@@ -1,0 +1,373 @@
+                            
+     ***** ./Wavelab850/Biorthogonal/ **********  
+Contents.m	  FWT2_PB.m   IWT2_PB.m   MakeBSFilter.m     UpDyadHi_PBS.m
+DownDyadHi_PBS.m  FWT2_PBS.m  IWT2_PBS.m  MakeBSWavelet.m    UpDyadLo_PBS.m
+DownDyadLo_PBS.m  FWT2_SBS.m  IWT2_SBS.m  MirrorSymmFilt.m   UpDyad_SBS.m
+DownDyad_SBS.m	  FWT_PB.m    IWT_PB.m	  PlotPBSMultiRes.m
+dyadpartition.m   FWT_PBS.m   IWT_PBS.m   symm_aconv.m
+extend.m	  FWT_SBS.m   IWT_SBS.m   symm_iconv.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh02/ **********  
+wt02fig01.m  WTCh02Demo.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh04/ **********  
+Analytic.m	quadinterpol.m	wt04fig07.m  wt04fig15.m    wt04fig20.m
+ImageAWTnew.m	realpow.m	wt04fig08.m  wt04fig16.asv  wt04fig21.m
+log2linChap4.m	WindowFT.m	wt04fig11.m  wt04fig16.m    wt04fig22.m
+MakeChirps.m	wt04fig03.m	wt04fig12.m  wt04fig17.m    WTCh04Demo.m
+MakeWindow.m	wt04fig05.m	wt04fig13.m  wt04fig18.m
+ourphase.m	wt04fig06.m	wt04fig14.m  wt04fig19.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh05/ **********  
+wt05fig04.m  wt05fig05.m  wt05fig06.m  WTCh05Demo.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh06/ **********  
+aconv2.m     L.m	      wt06fig05.m  wt06fig10.m	WTCh06Demo.m
+CalcFtheo.m  mMakeBrownian.m  wt06fig06.m  wt06fig11.m
+cantor.m     RightShift.m     wt06fig07.m  wt06fig16.m
+ConjGrad.m   wt06fig01.m      wt06fig08.m  wt06fig18.m
+DownShift.m  wt06fig03.m      wt06fig09.m  wt06fig20.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh07/ **********  
+beta01.m	       newPlotWaveCoeff.m  wt07fig06.m	wt07fig20.m
+Display2dProjV.m       NormedIFFT.m	   wt07fig07.m	wt07fig21.m
+DisplayProjV.m	       Sigma8.m		   wt07fig08.m	wt07fig22.m
+LinearSpline.m	       wt07fig01.m	   wt07fig09.m	wt07fig23.m
+mallatPlotWaveCoeff.m  wt07fig02.m	   wt07fig10.m	wt07fig24.m
+Meyerhath.m	       wt07fig03.m	   wt07fig11.m	wt07fig26.m
+modulo.m	       wt07fig04.m	   wt07fig14.m	WTCh07Demo.m
+newPlotSpikes.m        wt07fig05.m	   wt07fig15.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh08/ **********  
+PlotMBandPlane.m     wt08fig02.m  wt08fig08.m  WTCh08Demo.m
+PlotSquareCPPlane.m  wt08fig04.m  wt08fig18.m
+PlotSquareWPPlane.m  wt08fig06.m  wt08fig21.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh09/ **********  
+wt09fig01.m  wt09fig03.m  wt09fig05.m  wt09fig08.m  wt09fig10.m
+wt09fig02.m  wt09fig04.m  wt09fig07.m  wt09fig09.m  WTCh09Demo.m
+                            
+     ***** ./Wavelab850/Books/WaveTour/WTCh10/ **********  
+convgauss.m	   Wienerdec2.m     wt10fig03.m  wt10fig09.m  wt10fig15.m
+DiscrDenoise.m	   Wienerdec.m	    wt10fig04.m  wt10fig11.m  WTCh10Demo.m
+DisStatTree.m	   Wien_Filt_GWN.m  wt10fig05.m  wt10fig12.m
+Filt_GWN.m	   wt10fig01.m	    wt10fig06.m  wt10fig13.m
+MyPlotBasisTree.m  wt10fig02.m	    wt10fig07.m  wt10fig14.m
+                            
+     ***** ./Wavelab850/Browsers/WaveTour/ **********  
+Contents.m  WTBrowser.m  WTBrowser_Window.m
+                            
+     ***** ./Wavelab850/Browsers/One-D/ **********  
+clr_global.m	def_signal.m	  do_transform.m     plot_new_data.m
+Contents.m	def_tut.m	  do_wpcompress.asv  reset_slider.m
+def_bell.m	do_action.m	  do_wpcompress.m    setfigure.m
+def_data.asv	do_button.m	  do_wtcompress.m    sonify.m
+def_data.m	do_cpcompress.m   .DS_Store	     spectrum.m
+def_entropy.m	do_detail.m	  live_cpcompress.m  update_plot.m
+def_filter.m	do_global.m	  live_thresh.m      WLBrowserIntro.m
+def_nlevel.m	do_scalegram.asv  live_wpcompress.m  WLBrowser.m
+def_noise.m	do_scalegram.m	  live_wtcompress.m  wl_spectrum.m
+def_nonlin.m	do_scalogram.m	  NewShrink.asv
+def_shrinker.m	do_shrinkage.m	  NewShrink.m
+def_siglen.m	do_spectrum.m	  NewZoom.m
+                            
+     ***** ./Wavelab850/Continuous/ **********  
+AWT.m		       CWT_Wavelab.m	    PlotRidges.m
+BuildSkelMapFast.m     ExtractRidge.m	    PlotSkelMap.m
+BuildSkelMap.m	       IAWT.m		    PlotThermoPartition.m
+CalcCWTNorms.m	       ImageCWT.m	    PruneSkelMap.m
+CalcCWTPars.m	       ImageRWT.m	    Ridge_AWT.m
+CalcCWTScale.m	       ImageWTMM.m	    RWT.m
+CalcFracSpectrum.m     IRWT.m		    RWTscale.m
+CalcGenFracDimen.m     MM_RWT.m		    SkelMap.m
+CalcMomentGenFun.m     PlotGenFracDimen.m   WTMM.m
+CalcThermoPartition.m  PlotMomentGenFun.m
+Contents.m	       PlotMultiSpectrum.m
+                            
+     ***** ./Wavelab850/Datasets/ **********  
+barb.raw	daubechies.txt	 laser.asc	 MakeSignal.m	 ReadImage.m
+barb.txt	esca.asc	 laser.txt	 MakeSignal.m~	 ReadSignal.m
+barton.raw	esca.txt	 lenna.raw	 mat2raw.m	 seismic.asc
+barton.txt	fingerprint.raw  lenna.txt	 mriscan.raw	 seismic.txt
+BrowseImages.m	fingerprint.txt  lincoln.raw	 mriscan.txt	 SonRemy.asc
+canaletto.raw	greasy.asc	 lincoln.txt	 msignal.asc	 SonRemy.txt
+canaletto.txt	greasy.txt	 Make2dSignal.m  msignal.txt	 sunspots.asc
+caruso.asc	HochNMR.asc	 MakeBrownian.m  peppers256.raw  sunspots.txt
+caruso.txt	HochNMR.txt	 MakeCantor.m	 phone.raw	 transients.asc
+coifman.raw	ImageFig.m	 makediag.m	 phone.txt	 transients.txt
+coifman.txt	Internet.lnk	 MakeFractal.m	 RaphNMR.asc	 tweet.asc
+Contents.m	lady.asc	 MakeImage.m	 RaphNMR.txt	 tweet.txt
+daubechies.raw	lady.txt	 MakeProcess.m	 raw2mat.m
+                            
+     ***** ./Wavelab850/DeNoising/ **********  
+CohWave.m     HardThresh.m	 MultiMAD.m    SUREThresh.m	 VisuThresh.m
+Contents.m    HT2.m		 MultiSURE.m   ThreshCP.m	 WaveShrink.m
+CPDeNoise.m   HT.m		 MultiVisu.m   ThreshWave2.m	 Wiener2.m
+cyclespin2.m  HybridThresh.m	 NormNoise.m   ThreshWave.m	 Wiener.m
+GWN2.m	      IdealWavDenoise.m  SNR.m	       ThreshWP.m	 WPDeNoise.m
+GWN.m	      InvShrink.m	 SoftThresh.m  TIDenoiseHard2.m
+GWNoisy2.m    MinMaxThresh.m	 ST2.m	       TIDenoiseSoft2.m
+GWNoisy.m     MultiHybrid.m	 ST.m	       ValSUREThresh.m
+                            
+     ***** ./Wavelab850/Documentation/ **********  
+ADDINGNEWFEATURES.m  DATASTRUCTURES.m  LIMITATIONS.m   SUPPORT.m
+BUGREPORT.m	     FEEDBACK.m        PAYMENT.m       THANKS.m
+Contents.m	     GETTINGSTARTED.m  READING.m       VERSION.m
+COPYING.m	     INSTALLATION.m    REGISTRATION.m  WARRANTY.m
+                            
+     ***** ./Wavelab850/FastAlgorithms/ **********  
+Contents.m  INWT_PO.m		Mat2SparseSForm.m  StdWaveMult.m
+FNWT_PO.m   ISFT_PO.m		ndyad.m		   StretchMatrix.m
+FSFT_PO.m   Mat2SparseNSForm.m	NonStdWaveMult.m
+                            
+     ***** ./Wavelab850/Fractals/ **********  
+Contents.m  FracPartition.m  FracScalExp.m  FracSingSpect.m
+                            
+     ***** ./Wavelab850/Interpolating/ **********  
+AIDyadDown.m  DDDyadDown.m  HCoarsen2d.m	MakeAIFilter.m
+AIDyadUp.m    DDDyadUp.m    HRefine2d.m		MakeDDBdryFilter.m
+AIRefine2d.m  DDRefine.m    IWT_AI.m		MakeDDFilter.m
+AIRefine.m    FWT_AI.m	    IWT_DD.m		PlotAIMultiRes.m
+Contents.m    FWT_DD.m	    MakeAIBdryFilter.m	PlotDDMultiRes.m
+                            
+     ***** ./Wavelab850/Invariant/ **********  
+BestShift.m	  FWT_ATrou.m  IWT_Stat.m	  PackShiftCoeff.m
+CalcShiftStat.m   FWT_Stat.m   IWT_TI.m		  PlotColumns.m
+Contents.m	  FWT_TI.m     MakeATrouFilter.m  PlotStatTable.m
+DisplayDWT.m	  IMM2_DWT.m   MakeDyadFilter.m   Stat2TI.m
+DisplayDWTmaxr.m  IMM_DWT.m    MM2_DWT.m	  TI2Stat.m
+FWT2_Atrou.m	  IWT2_TI.m    MM_DWT.m		  UnpackShiftCoeff.m
+FWT2_TI.m	  IWT_ATrou.m  ModulusMaxima.m
+                            
+     ***** ./Wavelab850/Median/ **********  
+Contents.m    IMIPT.m	       PlotMRA_MT.m   QuadMedRef.m
+FMIPT.m       MedITriadDown.m  PlotMTCoeff.m  triad.m
+HigherDegree  MedITriadUp.m    quadmedian.m   TriMergeSort.m
+                            
+     ***** ./Wavelab850/Median/HigherDegree/ **********  
+BlockMedian.m  localmaxima.m   PlotPoly.m	ZeroX.m
+Contents.m     MedianInterp.m  realpolyroots.m
+                            
+     ***** ./Wavelab850/Meyer/ **********  
+CoarseMeyerCoeff.m  DetailMeyerProj.m  FoldMeyer.m  PlotYMMultiRes.m
+CoarseMeyerProj.m   dst_iii.m	       FTWT2_YM.m   QuasiDCT.m
+CombineCoeff.m	    dst_ii.m	       FWT2_YM.m    QuasiDST.m
+Contents.m	    dst_i.m	       FWT_YM.m     SeparateCoeff.m
+dct_iii.m	    ExtendProj.m       ITWT2_YM.m   UnfoldMeyer.m
+dct_ii.m	    FineMeyerCoeff.m   IWT2_YM.m    WindowMeyer.m
+DetailMeyerCoeff.m  FineMeyerProj.m    IWT_YM.m
+                            
+     ***** ./Wavelab850/Orthogonal/ **********  
+aconv.m		    DownDyadLo.m  FWT_PO.m    Make2dWavelet.m	PlotWaveCoeff.m
+CDJVDyadDown.m	    dyad2ix.m	  iconv.m     MakeCDJVFilter.m	quad2ix.m
+CDJVDyadUp.m	    dyadlength.m  ITWT2_PO.m  MakeOBFilter.m	quadlength.m
+Contents.m	    dyad.m	  IWT2_PO.m   MakeONFilter.m	reverse.m
+ContourMultiRes.m   FTWT2_PO.m	  IWT_CDJV.m  MakeWavelet.m	rshift.m
+DisplayMultiRes.m   FWT2_PO.m	  IWT_IO.m    MirrorFilt.m	UpDyadHi.m
+DisplayWaveCoeff.m  FWT_CDJV.m	  IWT_PO.m    PlotMultiRes.m	UpDyadLo.m
+DownDyadHi.m	    FWT_IO.m	  lshift.m    PlotSpikes.m	UpSampleN.m
+                            
+     ***** ./Wavelab850/Packets/One-D/ **********  
+AutoCPTour.m	   FPT_WP.m		  PlotCompressNumbers.m
+AutoWPTour.m	   ImageGaborPhase.m	  PlotGaborPhase.m
+BestBasis.m	   ImagePacketPhase.m	  PlotPacketTable.m
+CalcStatTree.m	   ImagePhasePlane.m	  PlotPhasePlane.m
+CalcTreeHeight.m   ImagePhaseVarious.m	  PlotPhaseTiling.m
+CalcWPLocation.m   IPT_CP.m		  PlotPhaseVarious.m
+CompareStdBases.m  IPT_WP.m		  PlotWavePhase.m
+Contents.m	   KLinCP.m		  unfold.m
+CPAnalysis.m	   MakeBasis.m		  UnpackBasisCoeff.m
+CPSynthesis.m	   MakeCosinePacket.m	  UnpackStatValue.m
+CPTour.m	   MakeONBell.m		  WPAnalysis.m
+dct_iv.m	   MakeWaveletPacket.m	  WPSynthesis.m
+DrawHeisenberg.m   node.m		  WPTour.m
+edgefold.m	   PackBasisCoeff.m	  WrapAround.m
+edgeunfold.m	   packet.m		  WTWPTour.m
+fold.m		   PlotBasisTree.m
+FPT_CP.m	   PlotCoeffComparison.m
+                            
+     ***** ./Wavelab850/Packets/Two-D/ **********  
+Best2dBasis.m	    Contents.m	IPT2_CP.m	       qpkt2ix.m
+BuildFBITree.m	    CP2dTour.m	IPT2_WP.m	       quadbounds.m
+Calc2dPktTable.m    CP2Tour.m	Make2dCosinePacket.m   Unpack2dBasisCoeff.m
+Calc2dSQTree.m	    dct2_iv.m	Make2dWaveletPacket.m  UpQuad.m
+Calc2dStatTree.m    DownQuad.m	Plot2dBasisTree.m      WP2dTour.m
+Calc2dTreeHeight.m  FPT2_CP.m	Plot2dPartition.m      WP2Tour.m
+CalcEntropy.m	    FPT2_WP.m	qnode.m
+                            
+     ***** ./Wavelab850/Papers/Adapt/ **********  
+AdaptCleanup.m	adfig04.m  adfig12.m	EvalHybrid.m	   SplineInit.m
+AdaptDemo.m	adfig05.m  adfig13.m	EvalRigor.m	   SplineUChoose.m
+AdaptFig.m	adfig06.m  adfig14.m	EvalSure.m	   SplineURisk.m
+AdaptInit.m	adfig07.m  adfig15.m	IMJPlotMultiRes.m  steintrunc.m
+AdaptIntro.m	adfig08.m  AutoTrunc.m	JamesStein.m	   WaveJS.m
+adfig01.m	adfig09.m  CoronaJS.m	opttrunc.m
+adfig02.m	adfig10.m  .ds_store	RigorThresh.m
+adfig03.m	adfig11.m  EvalFix.m	rms.m
+                            
+     ***** ./Wavelab850/Papers/Asymp/ **********  
+asfig01.m  asfig05.m  asfig09.m       AsympFig.m    fishrand.m
+asfig02.m  asfig06.m  asfig10.m       AsympInit.m   goodfit.mat
+asfig03.m  asfig07.m  AsympCleanup.m  AsympIntro.m  reverse.m
+asfig04.m  asfig08.m  AsympDemo.m     ESCAsim.mat   scatter.mat
+                            
+     ***** ./Wavelab850/Papers/Blocky/ **********  
+aifig1.m  aifig4.m  aifig7.m	     BlockyDemo.m  BlockyIntro.m
+aifig2.m  aifig5.m  BlockyCleanup.m  BlockyFig.m   .DS_Store
+aifig3.m  aifig6.m  BlockyDemo2.m    BlockyInit.m  MakeAllFilters.m
+                            
+     ***** ./Wavelab850/Papers/Correl/ **********  
+corfig01.m	 CorrelFig.m	errtot.m	   Noisegen.m
+corfig02.m	 CorrelInit.m	fbm.m		   PlotWaveCoeffLocal.m
+corfig03.m	 CorrelIntro.m	IMJPlotSpikes.m    ScaleMaker.m
+corfig04.m	 cortab01.m	LevelShrink.m	   StatShrink.m
+corfig05.m	 datasave.mat	MAD.m		   StepPlot.m
+CorrelCleanup.m  detect.m	MultiSUREThresh.m
+CorrelDemo.m	 .DS_Store	NoiseFrac.m
+                            
+     ***** ./Wavelab850/Papers/Ideal/ **********  
+claxis.m	IdealIntro.m  idfig02.m    idfig06.m  IMJPlotWaveCoeff.m
+IdealCleanup.m	IdealKern.m   idfig03.m    idfig07.m
+IdealDemo.m	IdealWave.m   idfig04.m    idfig08.m
+IdealFig.m	idealwts.m    idfig05.m    idfig09.m
+IdealInit.m	idfig01.m     idfig06.asv  idfig10.m
+                            
+     ***** ./Wavelab850/Papers/MinEntSeg/ **********  
+bloxplot.m	     mefig202.m    mefig211.m	 mefig306.m    MESDemo.m
+Compare2.m	     mefig203.m    mefig212.asv  mefig401.m    MESFig.m
+.DS_Store	     mefig204.m    mefig212.m	 mefig402.m    MESInit.m
+FastAllSeg.m	     mefig205.m    mefig213.asv  mefig601.m    MESIntro.m
+FastEntProfile.m     mefig206.m    mefig213.m	 mefig602.m    off_filter.m
+MakeAIRightFilter.m  mefig207.m    mefig214.m	 mefig603.m    PrintMEFigs.m
+MakeAISegFilter.m    mefig208.m    mefig302.m	 mefig604.m    Seg_Pursuit.m
+MakeBumps.m	     mefig209.m    mefig303.m	 mefig605.asv  SharpPart.m
+MakeMESTestSig.m     mefig210.asv  mefig304.m	 mefig605.m
+mefig201.m	     mefig210.m    mefig305.m	 MESCleanup.m
+                            
+     ***** ./Wavelab850/Papers/MIPT/ **********  
+CauchyT.mat  mifig23.m	mifig42.m      MIPTDemo.m   MIPTThreshold.m
+GaussT.mat   mifig24.m	mifig51.m      MIPTFig.m    mitable51.m
+mifig21.m    mifig31.m	mifig52.m      MIPTInit.m   MultiLMIRefine.m
+mifig22.m    mifig41.m	MIPTCleanup.m  MIPTIntro.m  MultiMedRefine.m
+                            
+     ***** ./Wavelab850/Papers/RiskAnalysis/ **********  
+addnoise.m	       Figure8.m		RiskFig3.m
+CalcNoiseLevelRisk.m   Figure9.m		RiskFig4.m
+CalcProjRisk.m	       Gen_data.m		RiskFig5.m
+CalcSamplesizeRisk.m   Gen_signal.m		RiskFig6.m
+CalcThreshRisk.m       make_plot.m		RiskFig7.m
+CalcThreshScaleRisk.m  mtitle.m			RiskFig8.m
+CalcThreshValueRisk.m  MyCalcThreshScaleRisk.m	RiskFig9.m
+clear_risk_global.m    NewZoom.m		RiskFig.m
+clear_updates.m        plot_newdata.m		risk_global.m
+close_updates.m        PR.m			RiskInit.m
+coeffrisk.m	       redo_plot.m		SignalPlot.m
+Denoise.m	       reset_updates1.m		sonify.m
+do_button.m	       reset_updates2.m		take_action.m
+Figure10.m	       RiskBrowser.m		Transformplot.m
+Figure11.m	       RiskDemo.m		Update_figs.m
+Figure12.m	       RiskFig10.m		updateplots.m
+Figure13.m	       RiskFig11.m		use_nlevel.m
+Figure3.m	       RiskFig12.m		use_ntypes.m
+Figure4.m	       RiskFig13.asv		use_pltoption.m
+Figure5.m	       RiskFig13.m		use_siglen.m
+Figure6.m	       RiskFig1.m		use_threshold.m
+Figure7.m	       RiskFig2.m		use_wavelet.m
+                            
+     ***** ./Wavelab850/Papers/ShortCourse/ **********  
+FHT_Med.m	       SAIDyadDown.m  scfig06.m    scfig16.m  scfig27.m
+FigNameString.m        SAIDyadUp.m    scfig07.m    scfig17.m  scfig28.m
+Figure19.mat	       SCCleanup.m    scfig08.m    scfig18.m  SCFig.m
+FWT_SegAI.m	       SCDemo.m       scfig09.m    scfig19.m  SCInit.m
+HCoarsen.m	       scfig01.m      scfig10.m    scfig20.m  SCIntro.m
+IHT_Med.m	       scfig02.asv    scfig11.asv  scfig21.m  SegRefine.m
+IWT_SegAI.m	       scfig02.m      scfig11.m    scfig22.m  SRefine.m
+MakeAISegmentFilter.m  scfig03.m      scfig12.m    scfig23.m  triadlength.m
+MedTriadDown.m	       scfig04.m      scfig13.m    scfig24.m
+MedTriadUp.m	       scfig05.m      scfig14.m    scfig25.m
+PlotSAIMultiRes.m      scfig06.asv    scfig15.m    scfig26.m
+                            
+     ***** ./Wavelab850/Papers/SpinCycle/ **********  
+CSInit.m	cspinf06.m  cspinf14.m	CSpinFig.m	   PrintAllCSpinFigs.m
+CSpinCleanup.m	cspinf07.m  cspinf15.m	CSpinInit.m	   SpinCycleInit.m
+CSpinDemo.m	cspinf08.m  cspinf16.m	CSpinIntro.m	   SpinFig.m
+cspinf01.m	cspinf09.m  cspinf17.m	cyclespin.m	   WPDeNoise_TI.m
+cspinf02.m	cspinf10.m  cspinf18.m	cyclespinning.m
+cspinf03.m	cspinf11.m  cspinf19.m	.DS_Store
+cspinf04.m	cspinf12.m  cspinf20.m	FourierDeNoise.m
+cspinf05.m	cspinf13.m  cspinf21.m	ModulateWavelab.m
+                            
+     ***** ./Wavelab850/Papers/Tour/ **********  
+CompressoGram.m  toufig01.m  toufig07.m  toufig13.m	TourInit.m
+.DS_Store	 toufig02.m  toufig08.m  toufig14.m	TourIntro.m
+fasthist.m	 toufig03.m  toufig09.m  toufig15.m	WaveCoeffLim.m
+LogoGram.m	 toufig04.m  toufig10.m  TourCleanup.m
+NoiseMaker.m	 toufig05.m  toufig11.m  TourDemo.m
+rootogram.m	 toufig06.m  toufig12.m  TourFig.m
+                            
+     ***** ./Wavelab850/Papers/VillardDeLans/ **********  
+Contents.m     VdLDemo.m   vdlfig03.m  vdlfig06.m  vdlfig09.m  VdLFig.m
+TreeDeNoise.m  vdlfig01.m  vdlfig04.m  vdlfig07.m  vdlfig10.m  VdLInit.m
+VdLCleanup.m   vdlfig02.m  vdlfig05.m  vdlfig08.m  vdlfig11.m  VdLIntro.m
+                            
+     ***** ./Wavelab850/Pursuit/ **********  
+Contents.m	     FWPAtomicSynthesis.m  PlotSynthesisTable.m
+CPAtomicSynthesis.m  FWPSynthesis.m	   WPAtomicSynthesis.m
+CPBPursuitTour.m     GaborPursuitTour.m    WPBPursuitTour.m
+CPImpulse.m	     ImageAtomicPhase.m    WPImpulse.m
+CPMPursuitTour.m     ix2pkt.m		   WPMPursuitTour.m
+CPPursuitBF.m	     MakeSynthesisTable.m  WPPursuitBF.m
+CPPursuit.m	     MonitorPursuit.m	   WPPursuit.m
+CPPursuitTour.m      pkt2ix.m		   WPPursuitTour.m
+FCPSynthesis.m	     PlotAtomicPhase.m
+                            
+     ***** ./Wavelab850/TimeFrequency/ **********  
+CohenDist.m  IWindowFT.m       Spectrogram.m  WindowFT.m
+Contents.m   MakeWindow.m      TFDist_AF.m    WVDist_AF.m
+Interpol2.m  Ridge_WindowFT.m  WignerDist.m   WVDist.m
+                            
+     ***** ./Wavelab850/Utilities/ **********  
+AppendTitle.m  getlength.m  log2lin.m		rnshift.m     WaitUntil.m
+AutoImage.m    GrayImage.m  MakeTiledFigures.m	ShapeAsRow.m  WhiteNoise.m
+Contents.m     HitAnyKey.m  PadDyad.m		ShapeLike.m
+CutDyad.m      ifprint.m    pic256.m		UnlockAxes.m
+expand.m       LockAxes.m   RegisterPlot.m	versaplot.m
+                            
+     ***** ./Wavelab850/Workouts/ **********  
+BestOrthoBasis	Contents.m  MatchingPursuit  MultiFractal  Toons
+                            
+     ***** ./Wavelab850/Workouts/BestOrthoBasis/ **********  
+BBWork01.m  BBWork04.m	BBWork20.m  BBWork31.m	BBWork42.m  Compare4Compress.m
+BBWork02.m  BBWork11.m	BBWork21.m  BBWork32.m	BBWork43.m  Contents.m
+BBWork03.m  BBWork12.m	BBWork22.m  BBWork41.m	BBWork61.m
+                            
+     ***** ./Wavelab850/Workouts/MatchingPursuit/ **********  
+Compare4Decomp.m  MPWork21.m  MPWork43.m	    PlotEquivRate.m
+Contents.m	  MPWork22.m  MPWork61.m	    PlotSemiCompressNum.m
+CPPrintPursuit.m  MPWork31.m  MPWork62.m	    WPPrintPursuit.m
+MPWork00.m	  MPWork32.m  PlotEquivDimension.m
+                            
+     ***** ./Wavelab850/Workouts/MultiFractal/ **********  
+Contents.m  MFWork01.m	MFWork02.m
+                            
+     ***** ./Wavelab850/Workouts/Toons/ **********  
+BB_CP.m		   toon0152.m	 toon0331.m  toon0512.m  toon0553.m  toon1002.m
+BB_WP.m		   toon0161.asv  toon0332.m  toon0513.m  toon0554.m  toon1003.m
+Contents.m	   toon0161.m	 toon0333.m  toon0514.m  toon0561.m  toon1004.m
+DoAllToons.m	   toon0171.m	 toon0334.m  toon0521.m  toon0562.m  toon1005.m
+KeepBiggest.m	   toon0172.m	 toon0335.m  toon0522.m  toon0563.m  toon1006.m
+KeepFirst.m	   toon0173.m	 toon0341.m  toon0523.m  toon0564.m  toon1007.m
+PlotLevelNorms.m   toon0174.m	 toon0342.m  toon0524.m  toon0565.m  toon1101.m
+PlotOrderedCoef.m  toon0181.m	 toon0411.m  toon0531.m  toon0711.m  toon1102.m
+PrintAllToons.m    toon0182.m	 toon0412.m  toon0532.m  toon0721.m  toon1103.m
+toon0111.m	   toon0183.m	 toon0421.m  toon0533.m  toon0731.m  toon1104.m
+toon0112.m	   toon0184.m	 toon0422.m  toon0541.m  toon0732.m  toon1105.m
+toon0113.m	   toon0211.m	 toon0431.m  toon0542.m  toon0741.m  toon1106.m
+toon0114.m	   toon0212.m	 toon0432.m  toon0543.m  toon0742.m  toon1107.m
+toon0121.m	   toon0221.m	 toon0433.m  toon0544.m  toon0811.m  toon1611.m
+toon0131.m	   toon0222.m	 toon0441.m  toon0545.m  toon0821.m  toon1612.m
+toon0132.m	   toon0231.m	 toon0442.m  toon0546.m  toon0831.m  toon1613.m
+toon0140.m	   toon0232.m	 toon0443.m  toon0547.m  toon0832.m
+toon0141.m	   toon0233.m	 toon0444.m  toon0548.m  toon0841.m
+toon0142.m	   toon0311.m	 toon0451.m  toon0551.m  toon0842.m
+toon0151.m	   toon0312.m	 toon0511.m  toon0552.m  toon1001.m
